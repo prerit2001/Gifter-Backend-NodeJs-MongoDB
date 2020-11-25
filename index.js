@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const hostname = 'localhost';
-const port = 3001;
+const port = 3001 || process.env.PORT;
 const userRoutes = require('./auth.js');
 
 app.use(cors());

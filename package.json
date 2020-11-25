@@ -1,7 +1,7 @@
 {
   "name": "node-backend",
   "version": "1.0.0",
-  "description": "\"\"\u001b[DThe Folder containing Backend of Gifter\"\u001b[D-React\"",
+  "description": "[DThe Folder containing Backend of Gifter",
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js"
