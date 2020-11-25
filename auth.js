@@ -1,7 +1,7 @@
 const express = require('express');
 const Router = express.Router();
 const User = require('./schema.js');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt-nodejs');
 const shortid = require('shortid');
 const jwt = require('jsonwebtoken');
 
@@ -21,7 +21,7 @@ Router.post('/signup',(req,res)=>{
             Password
         } = req.body;
         
-        const hash_password = await bcrypt.hash(Password, 10);
+        const hash_password = await bcrypt.hashSync(Password, 10);
         // const hash_password = Password;
 
         const _user = new User({
