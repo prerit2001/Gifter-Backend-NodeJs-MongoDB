@@ -31,9 +31,9 @@ mongoose.connect(
 //     console.log('--------',req.body);
 // });
 
-// app.get('/',function(req,res){
-//     res.send('hhkjkj');
-// });
+app.get('/',function(req,res){
+    res.send('Only Post Method Allowed');
+});
 
 app.use('/api',userRoutes);
 
