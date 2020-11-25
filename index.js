@@ -37,6 +37,6 @@ app.get('/',function(req,res){
 
 app.use('/api',userRoutes);
 
-app.listen(port,hostname,()=>{
+app.listen(process.env.PORT || 3001,()=>{
     console.log(`Server Running at http://${hostname}:${port}/`);
 });
