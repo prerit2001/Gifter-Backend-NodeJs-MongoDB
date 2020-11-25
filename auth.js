@@ -1,7 +1,7 @@
 const express = require('express');
 const Router = express.Router();
 const User = require('./schema.js');
-const bcrypt = require('bcrypt-nodejs');
+const bcrypt = require('bcryptjs');
 const shortid = require('shortid');
 const jwt = require('jsonwebtoken');
 
