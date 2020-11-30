@@ -1,6 +1,7 @@
 const express = require('express');
 const Router = express.Router();
 const User = require('./schema.js');
+const Post = require('./wishschema.js');
 const bcrypt = require('bcryptjs');
 const shortid = require('shortid');
 const jwt = require('jsonwebtoken');
@@ -41,8 +42,12 @@ Router.post('/signup',(req,res)=>{
                 });
             }
             if(data){
+                const token = jwt.sign({_id : data._id}, 'MERNSECRET', {expiresIn: '3h'});
                 return res.status(201).json({
-                    message: data
+                    token,
+                    user: {
+                        _id,Name, Moto, Phone, Age, Email
+                    }
                 })
             }
         });
@@ -83,5 +88,37 @@ Router.post('/signin',(req,res)=>{
         }
     })
 });
+
+
+Router.post('/postdata',(req,res)=>{
+    
+    const {
+        Title,
+        Heading,
+        Priority,
+        Pic,
+        Category,
+        Subject,
+        postedBy
+    } = req.body 
+
+    const post = new Post({
+        Title,
+        Heading,
+        Priority,
+        Pic,
+        Category,
+        Subject,
+        postedBy
+    });
+
+    post.save().then(result=>{
+        return res.status(200).json({post: result})
+    })
+    .catch(err=>{
+        return res.status(400).json(err);
+    })
+});
+
 
 module.exports = Router;
