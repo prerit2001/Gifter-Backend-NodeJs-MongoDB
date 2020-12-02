@@ -46,10 +46,10 @@ Router.post('/signup',(req,res)=>{
             if(data){
                 const token = jwt.sign({_id : data._id}, 'MERNSECRET', {expiresIn: '3h'});
                 return res.status(201).json({
-                    token,
-                    user: {
-                        _id,Name, Moto, Phone, Age, Email
-                    }
+                    token,user
+                    // user: {
+                    //     _id,Name, Moto, Phone, Age, Email
+                    // }
                 })
             }
         });
