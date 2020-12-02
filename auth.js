@@ -279,15 +279,15 @@ Router.post('/detailUserFollower',(req,res)=>{
         user.map(item =>{
             User.find({_id : item.From})
             .then((follower)=>{
-                fff += JSON.stringify(follower); 
-                // return res.json(follower)
+              //  fff += JSON.stringify(follower); 
+                 return res.json(follower)
             }).catch(err=>{
                 return res.status(405).json(err)
             })
         })
          
         console.log(fff);
-        return res.status(200).json(fff)
+      //  return res.status(200).json(fff)
     }).catch(err=>{
         return res.status(405).json(err)
     })
