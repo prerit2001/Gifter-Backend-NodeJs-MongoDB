@@ -276,6 +276,7 @@ Router.post('/detailUserFollower',(req,res)=>{
     var fff;
     Follow.find({To :req.body._id})
     .then(user=>{
+        console.log(user);
         user.map(item =>{
             User.find({_id : item.From})
             .then((follower)=>{
