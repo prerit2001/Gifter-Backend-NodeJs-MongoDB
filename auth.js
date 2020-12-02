@@ -288,19 +288,19 @@ Router.post('/detailUserFollower',(req,res)=>{
     var fff;
     Follow.find({To :req.body._id})
     .then(user=>{
-        console.log(user);
-        user.map(item =>{
-            User.find({_id : item.From})
-            .then((follower)=>{
-              //  fff += JSON.stringify(follower); 
-                 return res.json(follower)
-            }).catch(err=>{
-                return res.status(405).json(err)
-            })
-        })
+        // console.log(user);
+        // user.map(item =>{
+        //     User.find({_id : item.From})
+        //     .then((follower)=>{
+        //       //  fff += JSON.stringify(follower); 
+        //          return res.json(follower)
+        //     }).catch(err=>{
+        //         return res.status(405).json(err)
+        //     })
+        // })
          
-        console.log(fff);
-      //  return res.status(200).json(fff)
+        // console.log(fff);
+       return res.status(200).json(user);
     }).catch(err=>{
         return res.status(405).json(err)
     })
