@@ -273,19 +273,21 @@ Router.post('/findmail',(req,res)=>{
 
 Router.post('/detailUserFollower',(req,res)=>{
     // console.log(req.params.id);
+    const fff = {};
     Follow.find({To :req.body._id})
     .then(user=>{
         user.map(item =>{
             User.find({_id : item.From})
             .then((follower)=>{
-                return res.json(follower)
+                fff += follower; 
+                // return res.json(follower)
             }).catch(err=>{
                 return res.status(405).json(err)
             })
         })
          
-        
-        // return res.status(200).json(user)
+        console.log(fff);
+        return res.status(200).json(fff)
     }).catch(err=>{
         return res.status(405).json(err)
     })
