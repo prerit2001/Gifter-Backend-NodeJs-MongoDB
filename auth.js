@@ -273,7 +273,7 @@ Router.post('/findmail',(req,res)=>{
 
 Router.post('/finduser',(req,res)=>{
    
-
+    console.log("HHHHH");
     User.find({_id: req.body.finduser})
     .then(user => {
         console.log(user);
@@ -286,23 +286,41 @@ Router.post('/finduser',(req,res)=>{
 })
 
 Router.post('/detailUserFollower',(req,res)=>{
-    // console.log(req.params.id);
-    var fff;
+     console.log('jnjknkn');
+     let array = [];
+     let tmp;
+
     Follow.find({To :req.body._id})
-    .then(user=>{
+    .then(async user=>{
+        const len = user.length;
+        var ss = 0;
         // console.log(user);
-        // user.map(item =>{
-        //     User.find({_id : item.From})
-        //     .then((follower)=>{
-        //       //  fff += JSON.stringify(follower); 
-        //          return res.json(follower)
-        //     }).catch(err=>{
-        //         return res.status(405).json(err)
-        //     })
-        // })
+        user.map(item =>{
+            User.findOne({_id : item.From})
+            .then((follower)=>{
+              //  fff += JSON.stringify(follower);
+                // array.push({Name : follower.Name});
+                // console.log(follower);
+                tmp = {"Name" : follower.Name,"_id": follower._id};
+                console.log(tmp);
+                array.push(tmp);
+                ss++;
+                if(ss==len){
+                    console.log(array)
+                    return res.json(array);
+                }
+                // return res.json(follower)
+            }).catch(err=>{
+                return res.status(405).json(err)
+            })
+            // if(x==len){
+            //     console.log("LA")
+            // }
+        })
          
-        console.log(user);
-       return res.json(user);
+        await console.log(array);
+        console.log('hkjh');
+        // return res.json(array);
     }).catch(err=>{
         return res.status(405).json(err)
     })
