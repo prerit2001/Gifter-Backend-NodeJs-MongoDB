@@ -271,6 +271,18 @@ Router.post('/findmail',(req,res)=>{
     })
 })
 
+Router.post('/finduser',(req,res)=>{
+   
+
+    User.find({_id: req.body.finduser})
+    .then(user => {
+        return res.json(user);
+    })
+    .catch(error=>{
+        return res.json(error);
+    })
+})
+
 Router.post('/detailUserFollower',(req,res)=>{
     // console.log(req.params.id);
     var fff;
