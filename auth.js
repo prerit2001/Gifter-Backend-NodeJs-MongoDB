@@ -12,7 +12,7 @@ Router.post('/signup',(req,res)=>{
     User.findOne({Email: req.body.Email})
     .exec(async (error, user) => {
         if(user) return res.status(400).json({
-            message: 'Already Created' + user
+            message: 'Already Created' 
         })
         
         const {
@@ -44,12 +44,11 @@ Router.post('/signup',(req,res)=>{
                 });
             }
             if(data){
+                console.log(data);
                 const token = jwt.sign({_id : data._id}, 'MERNSECRET', {expiresIn: '3h'});
                 return res.status(201).json({
-                    token,user
-                    // user: {
-                    //     _id,Name, Moto, Phone, Age, Email
-                    // }
+                    token,data
+                   
                 })
             }
         });
