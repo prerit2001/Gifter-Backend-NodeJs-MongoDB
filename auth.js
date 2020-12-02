@@ -276,7 +276,9 @@ Router.post('/finduser',(req,res)=>{
 
     User.find({_id: req.body.finduser})
     .then(user => {
+        console.log(user);
         return res.json(user);
+        
     })
     .catch(error=>{
         return res.json(error);
@@ -299,8 +301,8 @@ Router.post('/detailUserFollower',(req,res)=>{
         //     })
         // })
          
-        // console.log(fff);
-       return res.status(200).json(user);
+        console.log(user);
+       return res.json(user);
     }).catch(err=>{
         return res.status(405).json(err)
     })
