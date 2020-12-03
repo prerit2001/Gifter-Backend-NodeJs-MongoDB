@@ -366,4 +366,37 @@ Router.post('/findallmessages',(req,res)=>{
     })
 });
 
+Router.post('/updatedata',(req,res)=>{
+    //console.log(req.body.url);
+    User.updateOne({Email :req.body.Email},{pofilePicture: req.body.url, Name: req.body.Name, Moto: req.body.Moto})
+    .then(user=>{
+         return res.status(200).json(user)
+    }).catch(err=>{
+        return res.status(405).json(err)
+    })
+});
+
+Router.post('/deletewish',(req,res)=>{
+        
+    const {
+        Pic,Title,Heading,Subject,Priority
+    } = req.body;
+    
+    Post.find({Title: Title,Heading: Heading,Priority: Priority,Pic: Pic,Subject: Subject})
+    .deleteMany((error, data) => {
+        if(error){
+            return res.status(400).json({
+                message: error
+            });
+        }
+        if(data){
+            return res.status(201).json({
+               data
+            })
+        }
+    });
+
+
+});
+
 module.exports = Router;

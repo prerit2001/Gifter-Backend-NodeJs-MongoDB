@@ -52,7 +52,8 @@ const userSchema = new mongoose.Schema({
          type: String 
     },
     pofilePicture: { 
-        type: String 
+        type: String ,
+        default: 'https://th.bing.com/th/id/OIP.DAQotCc6NyxQdo_BIXIGlwHaIa?pid=Api&rs=1'
     }
 }, { timestamps: true });
 
