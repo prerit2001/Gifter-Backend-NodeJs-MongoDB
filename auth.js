@@ -7,6 +7,14 @@ const Follow = require('./FollowSchema');
 const bcrypt = require('bcryptjs');
 const shortid = require('shortid');
 const jwt = require('jsonwebtoken');
+const nodemailer = require('nodemailer');
+const sendgridtransport = require('nodemailer-sendgrid-transport');
+
+const transporter = nodemailer.createTransport(sendgridtransport({
+    auth:{
+        api_key:"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"
+    }
+}))
 
 Router.post('/signup',(req,res)=>{
     User.findOne({Email: req.body.Email})
@@ -46,6 +54,12 @@ Router.post('/signup',(req,res)=>{
             if(data){
                 const token = jwt.sign({_id : data._id}, 'MERNSECRET', {expiresIn: '3h'});
                 const _id = data._id;
+                transporter.sendMail({
+                    to: Email,
+                    from: "No-Reply@GIFTER.com",
+                    Subject: "Welcome to the World of Gifter",
+                    html: "Hello ${Name},<h1> Thanks For Connecting With Us </h1><p>Email : ${Email}<br/>Password: ${Password}</p>"
+                })
                 return res.status(201).json({
                     token,
                     user: {
