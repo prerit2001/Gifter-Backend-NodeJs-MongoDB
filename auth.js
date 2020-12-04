@@ -63,7 +63,7 @@ Router.post('/signup',(req,res)=>{
                 return res.status(201).json({
                     token,
                     user: {
-                        _id,Name, Moto, Phone, Age, Email
+                        _id,Name, Moto, Phone, Age, Email, pofilePicture
                     }
                 })
             }
@@ -90,7 +90,7 @@ Router.post('/signin',(req,res)=>{
                 res.status(200).json({
                     token,
                     user: {
-                        _id,Name, Moto, Phone, Age, Email
+                        _id,Name, Moto, Phone, Age, Email, pofilePicture
                     }
                 })
             }
