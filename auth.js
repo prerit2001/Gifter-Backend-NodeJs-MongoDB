@@ -399,4 +399,46 @@ Router.post('/deletewish',(req,res)=>{
 
 });
 
+
+Router.post('/detailUserFollowing',(req,res)=>{
+    console.log('jnjknkn');
+    let array = [];
+    let tmp;
+
+   Follow.find({From :req.body._id})
+   .then(async user=>{
+       const len = user.length;
+       var ss = 0;
+       // console.log(user);
+       user.map(item =>{
+           User.findOne({_id : item.To})
+           .then((follower)=>{
+             //  fff += JSON.stringify(follower);
+               // array.push({Name : follower.Name});
+               // console.log(follower);
+               tmp = {"Name" : follower.Name,"_id": follower._id,"pofilePicture" : follower.pofilePicture};
+               console.log(tmp);
+               array.push(tmp);
+               ss++;
+               if(ss==len){
+                   console.log(array)
+                   return res.json(array);
+               }
+               // return res.json(follower)
+           }).catch(err=>{
+               return res.status(405).json(err)
+           })
+           // if(x==len){
+           //     console.log("LA")
+           // }
+       })
+        
+       await console.log(array);
+       console.log('hkjh');
+       // return res.json(array);
+   }).catch(err=>{
+       return res.status(405).json(err)
+   })
+});
+
 module.exports = Router;
