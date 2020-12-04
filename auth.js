@@ -301,7 +301,7 @@ Router.post('/detailUserFollower',(req,res)=>{
               //  fff += JSON.stringify(follower);
                 // array.push({Name : follower.Name});
                 // console.log(follower);
-                tmp = {"Name" : follower.Name,"_id": follower._id,"pofilePicture" : pofilePicture};
+                tmp = {"Name" : follower.Name,"_id": follower._id,"pofilePicture" : follower.pofilePicture};
                 console.log(tmp);
                 array.push(tmp);
                 ss++;
