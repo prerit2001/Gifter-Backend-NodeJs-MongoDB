@@ -14,11 +14,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 env.config();
 
-//mongodb+srv://root:<password>@cluster0.03waj.mongodb.net/<dbname>?retryWrites=true&w=majority
-//mongodb://root:<password>@cluster0-shard-00-00.03waj.mongodb.net:27017,cluster0-shard-00-01.03waj.mongodb.net:27017,cluster0-shard-00-02.03waj.mongodb.net:27017/<dbname>?ssl=true&replicaSet=atlas-87xeis-shard-0&authSource=admin&retryWrites=true&w=majority
 mongoose
   .connect(
-    "mongodb://root:admin@cluster0-shard-00-00.03waj.mongodb.net:27017,cluster0-shard-00-01.03waj.mongodb.net:27017,cluster0-shard-00-02.03waj.mongodb.net:27017/registration?ssl=true&replicaSet=atlas-87xeis-shard-0&authSource=admin&retryWrites=true&w=majority",
+   "INPUT YOUR URL OF MONGO",
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
